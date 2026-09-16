@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, ChevronLeft, Clock3, Cloud, FilePenLine, Inbox, LoaderCircle, Menu, Plus, Search, Sparkles, Trash2, X } from "lucide-react";
+import { Check, ChevronLeft, Clock3, FilePenLine, LoaderCircle, Menu, Plus, Search, Sparkles, Trash2, X } from "lucide-react";
 import { memo, useCallback, useDeferredValue, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
@@ -44,7 +44,7 @@ const EditorPane = memo(function EditorPane({ draft, isReady, saveState, metrics
       <div className="paper-rule" />
       <textarea className="content-input" value={draft.content} onChange={(event) => onUpdate({ content: event.target.value })} placeholder="Start writing. Your ideas are safe here…" aria-label="Draft content" />
     </div>
-    <footer className="editor-footer"><p><Inbox size={16} /> Memoized selectors keep this workspace responsive as it grows.</p><div><button className="delete-button" type="button" onClick={onDelete} disabled={saveState === "saving"}><Trash2 size={17} /> Delete</button><button className="save-button" type="button" onClick={onSave} disabled={saveState === "saving"}>{saveState === "saving" ? <LoaderCircle className="spin" size={17} /> : <Check size={17} />} Save draft</button></div></footer>
+    <footer className="editor-footer"><div><button className="delete-button" type="button" onClick={onDelete} disabled={saveState === "saving"}><Trash2 size={17} /> Delete</button><button className="save-button" type="button" onClick={onSave} disabled={saveState === "saving"}>{saveState === "saving" ? <LoaderCircle className="spin" size={17} /> : <Check size={17} />} Save draft</button></div></footer>
   </div>;
 });
 
@@ -136,22 +136,22 @@ export default function Home() {
   return <main className="draft-app">
     <Toaster position="top-right" />
     <header className="app-header">
-      <a className="brand" href="#workspace" aria-label="Draftly home"><span className="brand-symbol"><FilePenLine size={19} /></span><span>draftly</span></a>
-      <div className="header-status"><Cloud size={15} /><span>Redux state · derived with memoized selectors</span></div>
+      <a className="brand" href="#workspace" aria-label="Draft It home"><span className="brand-symbol"><FilePenLine size={19} /></span><span>Draft It</span></a>
+      <span />
       <div className="header-actions"><button className="mobile-menu" type="button" aria-label="Show drafts" onClick={openList}><Menu size={20} /></button><span className="avatar" aria-label="Personal workspace">P</span></div>
     </header>
     <section className="workspace" id="workspace">
       <aside className="rail" aria-label="Workspace navigation"><div className="rail-mark"><Sparkles size={18} /></div><nav><button className="active" type="button" aria-label="Drafts"><FilePenLine size={19} /><span>Drafts</span></button></nav><div className="rail-footer"><span>PD</span></div></aside>
       <aside className={mobileListOpen ? "draft-sidebar mobile-open" : "draft-sidebar"}>
         <div className="sidebar-top">
-          <div className="title-row"><div><p className="eyebrow">Memoized workspace</p><h1>Your drafts</h1></div><button className="close-list" type="button" aria-label="Close drafts" onClick={() => setMobileListOpen(false)}><X size={19} /></button></div>
+          <div className="title-row"><h1>Drafts</h1><button className="close-list" type="button" aria-label="Close drafts" onClick={() => setMobileListOpen(false)}><X size={19} /></button></div>
           <button className="new-draft" type="button" onClick={createDraft}><Plus size={17} /> New draft</button>
           <label className="search-box"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search drafts" aria-label="Search drafts" />{query && <button type="button" aria-label="Clear search" onClick={() => setQuery("")}><X size={15} /></button>}</label>
           <div className="filter-row" aria-label="Filter drafts">{categories.map((item) => <button key={item} className={filter === item ? "active" : ""} type="button" onClick={() => setFilter(item)} aria-pressed={filter === item}>{item}<span>{categoryCounts[item]}</span></button>)}</div>
         </div>
         <div className="draft-list" aria-live="polite">
           {!isReady ? Array.from({ length: 3 }).map((_, index) => <div className="draft-skeleton" key={index}><span /><span /><span /></div>) : filteredDrafts.length ? filteredDrafts.map((draft) => <DraftCard key={draft.id} draft={draft} active={draft.id === activeId} onSelect={selectDraft} />) : <div className="empty-list"><Search size={22} /><strong>No drafts found</strong><p>Try another search or start a new draft.</p></div>}
-        </div><p className="draft-count"><span>{draftCount} draft{draftCount === 1 ? "" : "s"}</span><span title="The filtered selector only recomputes when its inputs change">Selector runs: {filteredSelector.recomputations()}</span></p>
+        </div><p className="draft-count">{draftCount} draft{draftCount === 1 ? "" : "s"}</p>
       </aside>
       <section className="editor-shell"><EditorPane draft={activeDraft} isReady={isReady} saveState={saveState} metrics={metrics} platforms={platforms} onOpenList={openList} onCreate={createDraft} onUpdate={updateActive} onTogglePlatform={togglePlatform} onSave={saveDraft} onDelete={requestDelete} /></section>
     </section>

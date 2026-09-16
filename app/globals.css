@@ -19,5 +19,6 @@
 
 /* Derived-state and publishing controls */
 .filter-row{flex-wrap:wrap;overflow-x:visible}.filter-row button{padding:6px 9px}.filter-row button span{margin-left:5px;color:#98a1af;font-size:10px;font-variant-numeric:tabular-nums}.filter-row button.active span{color:#d77759}
-.draft-count{display:flex;justify-content:space-between;gap:10px;text-align:left}.draft-count span:last-child{color:#2d846e;font-weight:700;font-variant-numeric:tabular-nums}
+.draft-count{text-align:center}
+.editor-footer{justify-content:flex-end}
 .meta-line{flex-wrap:wrap}.platform-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}.platform-row button{padding:6px 10px;border:1px solid #e2e7ed;border-radius:999px;color:#758095;background:#fff;font-size:11px;font-weight:700}.platform-row button:hover{border-color:var(--platform-color);color:var(--platform-color)}.platform-row button.selected{border-color:color-mix(in srgb,var(--platform-color) 45%,white);color:var(--platform-color);background:color-mix(in srgb,var(--platform-color) 8%,white)}.paper-rule{margin-top:24px}.content-input{min-height:300px}

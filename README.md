@@ -1,4 +1,4 @@
-# Draftly — Redux Toolkit post manager
+# Draft It — Redux Toolkit post manager
 
 A responsive post drafting workspace that demonstrates centralized state management with Redux Toolkit and React-Redux. Posts and publishing platforms live in normalized entity stores, while component-only UI details such as the active filter and mobile panel remain local state.
 
